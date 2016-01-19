@@ -1,20 +1,20 @@
 #!/bin/bash
 
-mkdir -p /etc/tutum/agent/
-if [ ! -f "/etc/tutum/agent/tutum-agent.conf" ]; then
-    cat > /etc/tutum/agent/tutum-agent.conf <<EOF
+mkdir -p /etc/dockercloud/agent/
+if [ ! -f "/etc/dockercloud/agent/dockercloud-agent.conf" ]; then
+    cat > /etc/dockercloud/agent/dockercloud-agent.conf <<EOF
 {
     "CertCommonName":"${CERT_COMMON_NAME}",
     "DockerHost":"${DOCKER_HOST_LISTEN}",
-    "TutumHost":"${TUTUM_HOST}",
-    "TutumToken":"${TUTUM_TOKEN}",
-    "TutumUUID":"${TUTUM_UUID}"
+    "Host":"${HOST}",
+    "Token":"${TOKEN}",
+    "UUID":"${UUID}"
 }
 EOF
 fi
 
-echo "Using tutum-agent.conf:"
-cat /etc/tutum/agent/tutum-agent.conf
+echo "Using dockercloud-agent.conf:"
+cat /etc/dockercloud/agent/dockercloud-agent.conf
 
-mkdir -p /var/log/tutum && touch /var/log/tutum/docker.log && tail -F /var/log/tutum/docker.log &
-exec /usr/bin/tutum-agent -stdout "$@"
+mkdir -p /var/log/dockercloud && touch /var/log/dockercloud/docker.log && tail -F /var/log/dockercloud/docker.log &
+exec /usr/bin/dockercloud-agent -stdout "$@"

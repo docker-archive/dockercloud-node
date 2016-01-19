@@ -1,6 +1,0 @@
-.vagrant
-.tmp/
-packer_cache/
-build/
-Vagrantfile
-output-virtualbox-ovf/

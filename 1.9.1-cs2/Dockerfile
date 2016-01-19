@@ -8,14 +8,14 @@ ADD https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind /us
 RUN chmod +x /usr/local/bin/dind
 VOLUME /var/lib/docker
 
-ENV DOCKER_VERSION=1.9.1-cs2 GPG_KEY_ID=A87A2270 TUTUM_REPO=https://repo.tutum.co/ubuntu/ CERT_COMMON_NAME=*.node.tutum.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 TUTUM_HOST=https://dashboard.tutum.co/
+ENV DOCKER_VERSION=1.9.1-cs2 GPG_KEY_ID=A87A2270 GPG_KEY_PACKAGE_ID=A87A2270 REPO=https://repo.cloud.docker.com/ubuntu/ CERT_COMMON_NAME=*.node.dockerapp.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 HOST=https://cloud.docker.com/
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_PACKAGE_ID
 RUN gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
-RUN echo deb [arch=amd64] $TUTUM_REPO tutum main > /etc/apt/sources.list.d/tutum.list
-RUN apt-get update -q && DEBIAN_FRONTEND=noninteractive apt-get install -y tutum-agent
-ADD https://packages.docker.com/1.9/builds/linux/amd64/docker-$DOCKER_VERSION /usr/lib/tutum/docker
-RUN chmod +x /usr/lib/tutum/docker && ln -s /usr/lib/tutum/docker /usr/bin/docker
+RUN echo deb [arch=amd64] $REPO dockercloud main > /etc/apt/sources.list.d/dockercloud.list
+RUN apt-get update -q && DEBIAN_FRONTEND=noninteractive apt-get install -y dockercloud-agent
+ADD https://packages.docker.com/1.9/builds/linux/amd64/docker-$DOCKER_VERSION /usr/lib/dockercloud/docker
+RUN chmod +x /usr/lib/dockercloud/docker && ln -s /usr/lib/dockercloud/docker /usr/bin/docker
 ADD run.sh /
 
 EXPOSE 2375
