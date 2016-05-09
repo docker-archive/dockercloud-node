@@ -16,7 +16,7 @@
 		{
 			"type": "amazon-ebs",
 			"region": "us-east-1",
-			"source_ami": "ami-478b262c",
+			"source_ami": "ami-2b594f41",
 			"instance_type": "m3.medium",
 			"ssh_username": "ubuntu",
 			"ami_name": "dockercloud-node_{{timestamp}}",
