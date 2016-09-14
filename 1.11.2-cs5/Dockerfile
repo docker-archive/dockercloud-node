@@ -8,7 +8,7 @@ ADD https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind /us
 RUN chmod +x /usr/local/bin/dind
 VOLUME /var/lib/docker
 
-ENV DOCKER_VERSION=1.11.2-cs4 NGROK_VERSION=1.7 GPG_KEY_ID=A87A2270 GPG_KEY_PACKAGE_ID=A87A2270 REPO=https://repo.cloud.docker.com/ubuntu/ CERT_COMMON_NAME=*.node.dockerapp.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 HOST=https://cloud.docker.com/
+ENV DOCKER_VERSION=1.11.2-cs5 NGROK_VERSION=1.7 GPG_KEY_ID=A87A2270 GPG_KEY_PACKAGE_ID=A87A2270 REPO=https://repo.cloud.docker.com/ubuntu/ CERT_COMMON_NAME=*.node.dockerapp.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 HOST=https://cloud.docker.com/
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_PACKAGE_ID
 RUN gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
